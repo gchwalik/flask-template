@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 run:
 	docker build -t flask-template . && docker run -p 80:5000 --name flask-template -it flask-template
 
