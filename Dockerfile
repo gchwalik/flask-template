@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 ENV FLASK_APP=flask-template
-CMD [ "flask", "run", "--debug", "--host=0.0.0.0"]
+CMD [ "flask", "init-db"]
