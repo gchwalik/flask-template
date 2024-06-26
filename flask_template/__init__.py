@@ -2,12 +2,12 @@ import os
 
 from flask import Flask
 
-from . import db, click
+from flask_template import db, click
 
 # factory method
 def create_app(test_config=None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__)
 
     # if instance folder doesn't exist, create it
     try:
@@ -18,7 +18,7 @@ def create_app(test_config=None):
     # populate application config
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'flask-template.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'flask_template.sqlite'),
     )
     if test_config is None:
         # load the instance config, if it exists, when not testing
