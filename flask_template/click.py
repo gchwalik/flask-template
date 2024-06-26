@@ -1,6 +1,6 @@
 import click
 
-from . import db
+from flask_template import db
 
 @click.command('init-db')
 def init_db_command():
