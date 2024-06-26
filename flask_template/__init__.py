@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 
-from flask_template import db, click
+from . import db, click
 
 # factory method
 def create_app(test_config=None):
