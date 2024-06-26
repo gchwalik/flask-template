@@ -1,10 +1,10 @@
 import sqlite3
 
-import click
 from flask import current_app, g
 # g is a global namespace that holds global data
 # within an application context
 # cannot access g outside of an application context, or error
+
 
 def init_db():
     db = get_db()

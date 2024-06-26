@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 
-from flask_template import db, click
+from flask_template import auth, cli, db
 
 # factory method
 def create_app(test_config=None):
@@ -32,8 +32,11 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    # register blueprints
+    app.register_blueprint(auth.bp)
+
     # click commands
-    app.cli.add_command(click.init_db_command)
+    app.cli.add_command(cli.init_db_command)
 
     # cleanup logic
     app.teardown_appcontext(db.close_db)
