@@ -10,15 +10,16 @@ SHELL := /bin/bash
 
 # name = hat
 
-run: name = ${shell cat container_name}
+run: 
 run:
-	@echo $(name)
-	@echo $$object
+	name="$${flask-$$RANDOM}"; echo "$${name}"; echo $$name > file
+
 	# name := $(flask-template-$$RANDOM")
 	# @echo "flask-template-$$RANDOM" > container_name
 	# docker build -t flask-template . && docker run -p 80:5000 --name flask-template -it flask-template
 
 local: name = ${shell cat container_name}
+local:
 	docker exec -it flask-template bash
 
 cleanup:
