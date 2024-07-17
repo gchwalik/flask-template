@@ -12,7 +12,7 @@ SHELL := /bin/bash
 
 run:
 	NAME="flask-template-$$RANDOM"; echo $$NAME; echo $$NAME > file;
-	# docker build -t ${echo "$$NAME"} . && docker run -p 80:5000 --name $$NAME -it flask-template
+	docker build -t ${echo "$$NAME"} . && docker run -p 80:5000 --name $$NAME -it flask-template
 
 local: name = ${shell cat container_name}
 local:
