@@ -10,9 +10,15 @@ SHELL := /bin/bash
 
 # name = hat
 
+# NAME = $(echo flask-template-$(RANDOM))
+NAME := ${shell echo "flask-template-$$RANDOM"}
+
 run:
-	NAME="flask-template-$$RANDOM"; echo $$NAME; echo $$NAME > file;
-	docker build -t ${echo "$$NAME"} . && docker run -p 80:5000 --name $$NAME -it flask-template
+	# $(NAME)
+	# name is shell var
+	# NAME="flask-template-$$RANDOM"; \
+	echo $(NAME) > file; \
+	docker build -t $(NAME) . # && docker run -p 80:5000 --name $$NAME -it flask-template
 
 local: name = ${shell cat container_name}
 local:
