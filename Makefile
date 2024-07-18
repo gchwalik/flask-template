@@ -11,5 +11,12 @@ local: NAME := ${shell cat $(FILENAME)}
 local:
 	docker exec -it $(NAME) bash
 
+fmt:
+	@:
+
+lint:
+	@:
+
+
 cleanup:
 	docker system prune -f
