@@ -3,15 +3,18 @@
 *.pyc
 __pycache__/
 
-instance/
-
+# testing
 .pytest_cache/
 .coverage
 htmlcov/
 
+# distribution/packaging
 dist/
 build/
 *.egg-info/
 
-# app stuff
+# flask-specific
+instance/
+
+# application-specific logic
 container_name
