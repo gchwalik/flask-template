@@ -1,28 +1,15 @@
 SHELL := /bin/bash
 
-# currently need to delete previous image and rebuild
-# because cannot easily create uniquely-named images
-# in docker alone
-# export name := hiafds
-# name ?= RANDOM
-# @echo $$name
+FILENAME = container_name
 
-
-# name = hat
-
-# NAME = $(echo flask-template-$(RANDOM))
-NAME := ${shell echo "flask-template-$$RANDOM"}
-
+run: NAME := ${shell echo "flask-template-$$RANDOM"}
 run:
-	# $(NAME)
-	# name is shell var
-	# NAME="flask-template-$$RANDOM"; \
-	echo $(NAME) > file; \
-	docker build -t $(NAME) . # && docker run -p 80:5000 --name $$NAME -it flask-template
+	echo $(NAME) > $(FILENAME)
+	docker build -t $(NAME) . && docker run -p 8000:5000 --name $(NAME) -it $(NAME)
 
-local: name = ${shell cat container_name}
+local: NAME := ${shell cat $(FILENAME)}
 local:
-	docker exec -it flask-template bash
+	docker exec -it $(NAME) bash
 
 cleanup:
 	docker system prune -f
