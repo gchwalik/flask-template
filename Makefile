@@ -14,7 +14,7 @@ run:
 local:
 	@docker exec -it $(NAME) bash
 
-fmt: # mypy, isort, black, flake8
+fmt: # todo: mypy, isort, flake8
 	@docker exec $(NAME) black .
 
 lint:
