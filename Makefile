@@ -1,23 +1,24 @@
-SHELL := /bin/bash
+.PHONY = run local fmt lint cleanup
 
+SHELL := /bin/bash
 FILENAME = container_name
 
+NAME := ${shell cat $(FILENAME)}
+
+# share local files with container, for formatting, updating requirements, etc
 run: NAME := ${shell echo "flask-template-$$RANDOM"}
 run:
-	echo $(NAME) > $(FILENAME)
-	docker build -t $(NAME) . && \
-	docker run -v ./requirements.txt:/app/requirements.txt -p 8000:5000 --name $(NAME) -it $(NAME)
+	@echo $(NAME) > $(FILENAME)
+	@docker build -t $(NAME) . && docker run -v .:/app -p 8000:5000 --name $(NAME) -it $(NAME)
 
-local: NAME := ${shell cat $(FILENAME)}
 local:
-	docker exec -it $(NAME) bash
+	@docker exec -it $(NAME) bash
 
-fmt:
-	@:
+fmt: # mypy, isort, black, flake8
+	@docker exec $(NAME) black .
 
 lint:
-	@:
-
+	@docker exec $(NAME) black --check --color --diff .
 
 cleanup:
 	docker system prune -f
